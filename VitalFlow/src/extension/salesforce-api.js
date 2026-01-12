@@ -12,7 +12,7 @@ const SF_CONFIG = {
     
     // Access Token - Generate fresh one with: sf org display --verbose --target-org vitalflow-dev
     // ⚠️ Tokens expire in ~2 hours! Regenerate before demo!
-    accessToken: '00Dfj00000H91Jr!AQEAQNEb1e3oXEiYKVaaVBSn9DNqoj74rjyCntNQwVgwzC5mGAL5c0wB1w.r_wfZ42Df0qCSaf1CgcPQpf1rQe8k2ToJ54Dt',
+    accessToken: 'your-access-token',
     
     // API Version
     apiVersion: 'v65.0'

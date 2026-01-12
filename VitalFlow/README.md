@@ -1,12 +1,12 @@
-# 🏥 VitalFlow: AI-Assisted Hospital Command Center
+# 🏥 VitalFlow: AI-Powered Hospital Operations Command Center
 
 [![Tableau](https://img.shields.io/badge/Tableau-Cloud-E97627?logo=tableau)](https://www.tableau.com/)
-[![Salesforce](https://img.shields.io/badge/Salesforce-00A1E0?logo=salesforce)](https://www.salesforce.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Salesforce](https://img.shields.io/badge/Salesforce-Agentforce-00A1E0?logo=salesforce)](https://www.salesforce.com/)
+[![Platform Events](https://img.shields.io/badge/Architecture-Event--Driven-06B6D4)](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> **Transforming passive analytics into active command centers**  
-> Closing the Data-Action Gap in critical healthcare operations
+> **Real-Time Hospital Operations Management with AI-Driven Recommendations**  
+> Enterprise-grade event-driven architecture powering clinical decision-making
 
 ---
 
