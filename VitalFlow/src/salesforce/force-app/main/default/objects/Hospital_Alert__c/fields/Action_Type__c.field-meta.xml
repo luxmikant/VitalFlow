@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Action_Type__c</fullName>
+    <description>Type of action to be taken</description>
+    <externalId>false</externalId>
+    <label>Action Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Deploy Staff</fullName>
+                <default>false</default>
+                <label>Deploy Staff</label>
+            </value>
+            <value>
+                <fullName>Divert Ambulance</fullName>
+                <default>false</default>
+                <label>Divert Ambulance</label>
+            </value>
+            <value>
+                <fullName>Request Equipment</fullName>
+                <default>false</default>
+                <label>Request Equipment</label>
+            </value>
+            <value>
+                <fullName>Emergency Protocol</fullName>
+                <default>false</default>
+                <label>Emergency Protocol</label>
+            </value>
+            <value>
+                <fullName>Capacity Overflow</fullName>
+                <default>false</default>
+                <label>Capacity Overflow</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

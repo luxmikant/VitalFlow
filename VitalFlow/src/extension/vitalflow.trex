@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest manifest-version="0.1" xmlns="http://www.tableau.com/xml/extension_manifest">
+  <dashboard-extension id="com.vitalflow.hospital" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>VitalFlow AI-Assisted Hospital Command Center - Transform passive analytics into active operations</description>
+    <author name="VitalFlow Team" email="team@vitalflow.dev" organization="VitalFlow" website="https://vitalflow.dev"/>
+    <min-api-version>1.10</min-api-version>
+    <source-location>
+      <url>http://localhost:8765/index.html</url>
+    </source-location>
+    <icon>iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIi8+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/AQBJREFUeJzt1DEOgCAQRdF/d+Pe/1Z27CxMNBYWho0F8E4ywSR8mIEsy7Isy7Isy7Isy/IfgN8D7r6guwcA7gP+BPz/gLsP6O4BgPuAPwH/P+DuA7p7AOA+4E/A/w+4+4DuHgC4D/gT8P8D7j6guwcA7gP+BNz+gAIA</icon>
+    <permissions>
+      <permission>full data</permission>
+    </permissions>
+  </dashboard-extension>
+  <resources>
+    <resource id="name">
+      <text locale="en_US">VitalFlow Command Center</text>
+    </resource>
+  </resources>
+</manifest>

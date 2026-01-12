@@ -1,0 +1,11 @@
+Ward_ID,Ward_Name,Occupancy_Percent,Available_Beds,Total_Beds,Wait_Time_Minutes,Status,Last_Updated
+ER01,Emergency Room,135,0,20,240,Critical,2026-01-12 14:30:00
+ICU01,Intensive Care Unit,95,1,20,0,High,2026-01-12 14:30:00
+WA01,Ward A,75,5,20,15,Medium,2026-01-12 14:30:00
+WB01,Ward B,60,8,20,10,Normal,2026-01-12 14:30:00
+WC01,Ward C,85,3,20,25,Medium,2026-01-12 14:30:00
+PED01,Pediatrics,50,10,20,20,Normal,2026-01-12 14:30:00
+MAT01,Maternity,70,6,20,30,Normal,2026-01-12 14:30:00
+SURG01,Surgery Recovery,80,4,20,0,Medium,2026-01-12 14:30:00
+ONC01,Oncology,65,7,20,45,Normal,2026-01-12 14:30:00
+CARD01,Cardiology,90,2,20,60,High,2026-01-12 14:30:00

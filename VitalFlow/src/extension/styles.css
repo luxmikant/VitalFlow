@@ -1,0 +1,353 @@
+/**
+ * VitalFlow Command Center - Styles
+ * Built with Salesforce Lightning Design System
+ */
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    background-color: #f3f3f3;
+    min-height: 100%;
+}
+
+.vitalflow-container {
+    max-width: 100%;
+    min-height: 100vh;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+}
+
+/* ============================================
+   CONNECTION STATUS
+   ============================================ */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+.status-connected {
+    background-color: #e6f7e6;
+    color: #2e844a;
+}
+
+.status-connected .status-dot {
+    background-color: #2e844a;
+}
+
+.status-disconnected {
+    background-color: #fef0f0;
+    color: #c23934;
+}
+
+.status-disconnected .status-dot {
+    background-color: #c23934;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================================
+   CARD STYLES
+   ============================================ */
+
+.slds-card {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+/* ============================================
+   STAT CARDS
+   ============================================ */
+
+.stat-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #706e6b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #16325c;
+}
+
+/* ============================================
+   SEVERITY BADGES
+   ============================================ */
+
+.severity-critical {
+    background-color: #c23934 !important;
+    color: white !important;
+}
+
+.severity-high {
+    background-color: #ff9a3c !important;
+    color: white !important;
+}
+
+.severity-medium {
+    background-color: #ffb75d !important;
+    color: #3e3e3c !important;
+}
+
+.severity-normal {
+    background-color: #2e844a !important;
+    color: white !important;
+}
+
+/* ============================================
+   SEVERITY PANEL BORDERS
+   ============================================ */
+
+.severity-panel-critical {
+    border-left: 4px solid #c23934 !important;
+}
+
+.severity-panel-high {
+    border-left: 4px solid #ff9a3c !important;
+}
+
+.severity-panel-medium {
+    border-left: 4px solid #ffb75d !important;
+}
+
+.severity-panel-normal {
+    border-left: 4px solid #2e844a !important;
+}
+
+/* ============================================
+   AI RECOMMENDATION BOX
+   ============================================ */
+
+.ai-box {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6ecff 100%) !important;
+    border: 1px solid #d8e5ff;
+    border-radius: 0.5rem;
+}
+
+.ai-box .slds-icon-utility-einstein {
+    color: #0176d3;
+}
+
+/* ============================================
+   SUCCESS PANEL
+   ============================================ */
+
+.success-card {
+    background: linear-gradient(135deg, #e6f7e6 0%, #d4f4d4 100%) !important;
+    text-align: center;
+}
+
+.success-icon-container {
+    margin: 1rem auto;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   BUTTON STYLES
+   ============================================ */
+
+.slds-button_brand {
+    background: linear-gradient(180deg, #0176d3 0%, #014486 100%);
+    transition: all 0.2s ease;
+}
+
+.slds-button_brand:hover:not(:disabled) {
+    background: linear-gradient(180deg, #014486 0%, #012a52 100%);
+    transform: translateY(-1px);
+}
+
+.slds-button_brand:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.slds-button_disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   LOADING SPINNER OVERLAY
+   ============================================ */
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+/* ============================================
+   TOAST MODIFICATIONS
+   ============================================ */
+
+.slds-notify_container {
+    z-index: 9999;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.slds-illustration {
+    padding: 2rem;
+}
+
+.slds-illustration svg {
+    display: block;
+    margin: 0 auto;
+}
+
+/* ============================================
+   TEXT COLORS
+   ============================================ */
+
+.text-critical {
+    color: #c23934;
+    font-weight: 700;
+}
+
+.text-high {
+    color: #ff9a3c;
+    font-weight: 600;
+}
+
+.text-medium {
+    color: #ffb75d;
+    font-weight: 600;
+}
+
+.text-normal {
+    color: #2e844a;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 480px) {
+    .vitalflow-container {
+        padding: 0.5rem;
+    }
+    
+    .stat-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-value {
+        font-size: 1.25rem;
+    }
+    
+    .slds-button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .slds-button-group .slds-button {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}

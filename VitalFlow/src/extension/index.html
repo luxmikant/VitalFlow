@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalFlow Command Center</title>
+    
+    <!-- Salesforce Lightning Design System -->
+    <link rel="stylesheet" href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/styles/salesforce-lightning-design-system.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tableau Extensions API -->
+   <script src="https://cdn.jsdelivr.net/gh/tableau/extensions-api@master/lib/tableau.extensions.1.latest.js"></script>
+</head>
+<body>
+    <div class="slds-scope">
+        <!-- Main Container -->
+        <div class="vitalflow-container">
+            
+            <!-- Header -->
+            <header class="slds-page-header slds-page-header_record-home">
+                <div class="slds-page-header__row">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-dashboard" title="VitalFlow">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                        <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/standard-sprite/svg/symbols.svg#dashboard"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h1 class="slds-page-header__title">
+                                    <span class="slds-truncate" title="VitalFlow">VitalFlow</span>
+                                </h1>
+                                <p class="slds-page-header__meta-text">AI Command Center</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-page-header__col-actions">
+                        <div id="status-indicator" class="status-badge status-disconnected">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Connecting...</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="slds-align_absolute-center" style="height: 300px;">
+                <div role="status" class="slds-spinner slds-spinner_medium">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+
+            <!-- Empty State (No Selection) -->
+            <div id="empty-state" class="slds-illustration slds-illustration_small" style="display: none;">
+                <div class="slds-text-align_center">
+                    <svg class="slds-illustration__svg" viewBox="0 0 100 100" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" style="width: 80px; height: 80px; margin: 20px auto;">
+                        <circle cx="50" cy="50" r="45" fill="#f3f3f3" stroke="#d8d8d8" stroke-width="2"/>
+                        <path d="M35 45 L45 55 L65 35" fill="none" stroke="#0070d2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="slds-text-longform">
+                        <h3 class="slds-text-heading_medium">Select a Ward</h3>
+                        <p class="slds-text-body_regular slds-text-color_weak">
+                            Click on a ward in the dashboard to view AI recommendations and take action.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ward Info Panel -->
+            <div id="ward-panel" class="slds-card" style="display: none;">
+                <!-- Ward Header -->
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span id="ward-icon" class="slds-icon_container slds-icon-standard-account">
+                                <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                    <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/standard-sprite/svg/symbols.svg#location"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span id="ward-name" class="slds-truncate">Ward Name</span>
+                            </h2>
+                        </div>
+                        <div class="slds-no-flex">
+                            <span id="severity-badge" class="slds-badge slds-badge_inverse">Normal</span>
+                        </div>
+                    </header>
+                </div>
+
+                <!-- Ward Stats -->
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-gutters_small slds-wrap">
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="stat-card">
+                                <span class="stat-label">Occupancy</span>
+                                <span id="stat-occupancy" class="stat-value">--</span>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="stat-card">
+                                <span class="stat-label">Available Beds</span>
+                                <span id="stat-beds" class="stat-value">--</span>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="stat-card">
+                                <span class="stat-label">Wait Time</span>
+                                <span id="stat-wait" class="stat-value">--</span>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="stat-card">
+                                <span class="stat-label">Status</span>
+                                <span id="stat-status" class="stat-value">--</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Recommendation Box -->
+                    <div id="ai-recommendation" class="slds-box slds-theme_shade slds-m-top_medium ai-box">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_small">
+                            <span class="slds-icon_container slds-icon-utility-einstein" title="AI">
+                                <svg class="slds-icon slds-icon-text-default slds-icon_x-small" aria-hidden="true">
+                                    <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/utility-sprite/svg/symbols.svg#einstein"></use>
+                                </svg>
+                            </span>
+                            <span class="slds-text-title_bold slds-m-left_x-small">AI Recommendation</span>
+                        </div>
+                        <p id="ai-text" class="slds-text-body_regular">
+                            Analyzing ward data...
+                        </p>
+                        <div id="ai-action" class="slds-m-top_small">
+                            <strong>Suggested Action:</strong>
+                            <span id="suggested-action" class="slds-text-color_success">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="slds-card__footer">
+                    <div class="slds-button-group" role="group">
+                        <button id="btn-execute" class="slds-button slds-button_brand" onclick="handleExecuteAction()">
+                            <svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+                                <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                            </svg>
+                            Execute Action
+                        </button>
+                        <button id="btn-dismiss" class="slds-button slds-button_neutral" onclick="dismissRecommendation()">
+                            Dismiss
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Panel -->
+            <div id="success-panel" class="slds-card success-card" style="display: none;">
+                <div class="slds-card__body slds-card__body_inner slds-text-align_center">
+                    <div class="success-icon-container">
+                        <svg class="success-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#4bca81"/>
+                            <path d="M30 50 L45 65 L70 35" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="slds-text-heading_medium slds-m-top_medium">Action Executed!</h3>
+                    <p id="success-message" class="slds-text-body_regular slds-text-color_weak slds-m-top_small">
+                        Staff deployment initiated. Notifications sent.
+                    </p>
+                    <p id="record-id" class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                        Record ID: --
+                    </p>
+                    <button class="slds-button slds-button_neutral slds-m-top_medium" onclick="resetPanel()">
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Error Toast -->
+            <div id="error-toast" class="slds-notify_container slds-is-fixed" style="display: none; bottom: 0; top: auto;">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                    <span class="slds-assistive-text">error</span>
+                    <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top">
+                        <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                            <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                        </svg>
+                    </span>
+                    <div class="slds-notify__content">
+                        <h2 class="slds-text-heading_small" id="error-message">An error occurred</h2>
+                    </div>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick="hideError()">
+                            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                <use xlink:href="https://unpkg.com/@salesforce-ux/design-system@2.21.5/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Salesforce API Module -->
+    <script src="salesforce-api.js"></script>
+    
+    <!-- Main Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
